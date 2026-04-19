@@ -77,20 +77,86 @@ All colors MUST be HSL.
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground;
   }
-  
+
   .glow-accent {
     box-shadow: var(--glow-accent);
   }
-  
+
   .glow-subtle {
     box-shadow: var(--glow-subtle);
   }
-  
+
   .shadow-float {
     box-shadow: var(--shadow-float);
   }
-  
+
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+
+  .font-display {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+  }
+
+  .font-mono-jb {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Landing page dark theme overrides */
+.landing-dark {
+  --landing-bg: #0a0a0b;
+  --landing-bg-2: #0f0f12;
+  --landing-fg: #f5f3ee;
+  --landing-fg-dim: rgba(245,243,238,0.55);
+  --landing-fg-mute: rgba(245,243,238,0.32);
+  --landing-fg-faint: rgba(245,243,238,0.12);
+  --landing-line: rgba(245,243,238,0.08);
+  --landing-accent: oklch(0.72 0.18 280);
+  --landing-accent-fallback: #a876ff;
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+
+.landing-dark ::selection {
+  background: var(--landing-accent, var(--landing-accent-fallback));
+  color: #000;
+}
+
+/* Landing page keyframes */
+@keyframes landing-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes landing-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes landing-sheen {
+  0%, 100% { background-position: 200% 0; }
+  50% { background-position: -50% 0; }
+}
+
+@keyframes landing-float {
+  0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(-3deg); }
+  50% { transform: translateY(-18px) rotateX(-2deg) rotateY(3deg); }
+}
+
+@keyframes landing-float-simple {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+/* Scroll reveal */
+.landing-dark .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 900ms cubic-bezier(0.19, 1, 0.22, 1), transform 900ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.landing-dark .reveal.in {
+  opacity: 1;
+  transform: none;
 }
